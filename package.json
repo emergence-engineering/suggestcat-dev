@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "dev-all": "concurrently \"pnpm -r run dev --filter prosemirror-slash-menu\" \"pnpm -r run dev --filter prosemirror-slash-menu-react\" \"pnpm -r run dev --filter prosemirror-suggestcat-plugin\" \"pnpm -r run dev --filter prosemirror-suggestcat-plugin-react\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "matejcsok-istvan",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
 }
