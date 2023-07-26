@@ -8,7 +8,23 @@
 - changes outside of the `/packages` should be commited from the root folder to this github package
 - inside `/app` folder there is a create-react-app project, which is part of this project - not a git submodule
 
-### start project
+### prerequisites :clipboard:
+Before running the project for the first time, ensure that you have completed the following steps:
+```sh
+npm install -g pnpm # just for the first time, install `pnpm`
+```
+```sh
+pnpm -r exec rm -rf node_modules # just for the first time, remove all `node_modules`
+```
+```sh
+corepack enable
+```
+If you installed Node.js using Homebrew, you'll need to install corepack separately:
+```sh
+brew install corepack
+```
+
+### start project :rocket:
 ```sh
 pnpm install # installs packages in all workspaces
 ```
@@ -34,3 +50,6 @@ pnpm --filter editor run start # in another terminal starts the CRA project insi
 - in case you have something IDE specific file/folder which should be `gitignored`, please include it in `.gitignore`:exclamation:
 
 **For more information about `pnpm` read the [workspaces docs](https://pnpm.io/workspaces)** :books:
+
+### publishing submodules to npm registry :construction:
+- comming soon...
