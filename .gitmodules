@@ -1,0 +1,12 @@
+[submodule "packages/prosemirror-suggestcat-plugin"]
+	path = packages/prosemirror-suggestcat-plugin
+	url = https://github.com/emergence-engineering/prosemirror-suggestcat-plugin.git
+[submodule "packages/prosemirror-suggestcat-plugin-react"]
+	path = packages/prosemirror-suggestcat-plugin-react
+	url = https://github.com/emergence-engineering/prosemirror-suggestcat-plugin-react.git
+[submodule "packages/prosemirror-slash-menu-react"]
+	path = packages/prosemirror-slash-menu-react
+	url = https://github.com/emergence-engineering/prosemirror-slash-menu-react.git
+[submodule "packages/prosemirror-slash-menu"]
+	path = packages/prosemirror-slash-menu
+	url = https://github.com/emergence-engineering/prosemirror-slash-menu.git
