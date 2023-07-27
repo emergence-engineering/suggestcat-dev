@@ -12,6 +12,7 @@
   "author": "matejcsok-istvan",
   "license": "ISC",
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "concurrently": "^8.2.0"
   }
 }
