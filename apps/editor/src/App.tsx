@@ -35,9 +35,9 @@ import {
 } from "prosemirror-suggestcat-plugin-react";
 
 const Root = styled.div`
-width:100%;
-display:flex;
-justify-content:center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const StyledEditor = styled.div`
@@ -122,14 +122,17 @@ export const Editor: React.FunctionComponent = () => {
       view.destroy();
     };
   }, [editorRef]);
+
   const slashMenuPopperRef = useMemo(() => {
     if (!editorView || !editorState) return;
     return editorView.domAtPos(editorState.selection.to)?.node;
   }, [editorState]);
+
   const tooltipVirtualRef = useMemo(() => {
     if (!editorView || !editorState) return;
     return editorView.domAtPos(editorState.selection.to)?.node;
   }, [editorState?.selection, window.scrollY]);
+
   const { styles, attributes } = usePopper(
     // @ts-ignore TODO
     tooltipVirtualRef,
@@ -151,7 +154,7 @@ export const Editor: React.FunctionComponent = () => {
           },
         },
       ],
-    },
+    }
   );
 
   const suggestionState = useMemo(() => {
@@ -170,6 +173,7 @@ export const Editor: React.FunctionComponent = () => {
       suggestionState?.status === Status.idle
     );
   }, [editorState, suggestionState]);
+
   const handleTooltipClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       e.preventDefault();
@@ -179,8 +183,9 @@ export const Editor: React.FunctionComponent = () => {
       });
       return true;
     },
-    [editorView],
+    [editorView]
   );
+
   return (
     <Root>
       <StyledEditor id="editor" ref={editorRef} />
