@@ -1,6 +1,6 @@
 {
   "name": "editor",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": true,
   "dependencies": {
     "@emotion/styled": "^11.11.0",

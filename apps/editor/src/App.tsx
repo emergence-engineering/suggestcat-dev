@@ -160,6 +160,7 @@ export const Editor: React.FunctionComponent = () => {
   const suggestionState = useMemo(() => {
     if (!editorState) return;
     const state = completePluginKey.getState(editorState);
+    console.log({ state });
     return state;
   }, [editorState]);
 

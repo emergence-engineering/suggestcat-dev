@@ -81,4 +81,10 @@ git tag v0.1.5 --annotate -m "message" # change v0.1.5 with the current version
 git push --tags # push tags to github
 ```
 
+at this point you have some changes in the monorepo, commit and push
+- keep in mind that the submodules just point to a commit hash in the submodule
+- let's keep that commit be that latest commit hash on the given submodule's `main` branch
+- :warning: **DO NOT** commit dirty commit hash
+- :warning: **DO NOT** commit feature/bug or any other branch's commit other than the `main`'s branch latest commit hash
+
 **[for full documentation read pnpm changeset docs :books:](https://pnpm.io/using-changesets)**\
