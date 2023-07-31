@@ -29,6 +29,12 @@ If you installed Node.js using Homebrew, you'll need to install corepack separat
 ```sh
 brew install corepack
 ```
+
+for the first time, this command will fetch the git submodules
+```sh
+git submodule update --init --recursive # from the root folder
+```
+
 you may need to set github access tokens for submodules:\
 `remote: Permission to emergence-engineering/<git-repo>.git denied to optimistiks.`
 ```sh
@@ -42,9 +48,21 @@ git remote add origin https://<access-token>@github.com/emergence-engineering/<g
 ```sh
 pnpm install # installs packages in all workspaces
 ```
+
+this is a bit buggy atm
 ```sh
 pnpm run dev-all # runs all workspaces inside `/packages` using `concurrently`
 ```
+
+if so, run `build` or `dev` from separate terminal windows
+
+```sh
+pnpm --filter prosemirror-slash-menu dev # terminal #1
+pnpm --filter prosemirror-slash-menu-react dev # terminal #2
+pnpm --filter prosemirror-suggestcat-plugin dev # terminal #3
+pnpm --filter prosemirror-suggestcat-plugin-react dev # terminal #4
+```
+
 ```sh
 pnpm --filter editor run start # in another terminal starts the CRA project inside `/apps/editor`
 ```
