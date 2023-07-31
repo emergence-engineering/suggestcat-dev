@@ -55,12 +55,18 @@ pnpm run dev-all # runs all workspaces inside `/packages` using `concurrently`
 ```
 
 if so, run `build` or `dev` from separate terminal windows
-
+- keep in mind, if you just run `build` from one terminal session one after another, the order matters as `prosemirror-suggestcar-plugin-react` depends on the rest of the workspaces
+- no need to build all of them all the time, if one package is built already and there are no changes, no need to build it 
 ```sh
 pnpm --filter prosemirror-slash-menu dev # terminal #1
-pnpm --filter prosemirror-slash-menu-react dev # terminal #2
-pnpm --filter prosemirror-suggestcat-plugin dev # terminal #3
+pnpm --filter prosemirror-suggestcat-plugin dev # terminal #2
+pnpm --filter prosemirror-slash-menu-react dev # terminal #3
 pnpm --filter prosemirror-suggestcat-plugin-react dev # terminal #4
+```
+
+usually only need to run 1 or 2 workspaces in live mode
+```sh
+pnpm --filter <workspace> dev # replace `<workspace>`
 ```
 
 ```sh
