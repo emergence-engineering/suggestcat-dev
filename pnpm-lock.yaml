@@ -193,7 +193,7 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
       prosemirror-slash-menu:
-        specifier: workspace:*
+        specifier: ^0.1.5
         version: link:../prosemirror-slash-menu
       prosemirror-state:
         specifier: 1.4.3
@@ -381,16 +381,16 @@ importers:
         specifier: ^13.4.10
         version: 13.4.10(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
       prosemirror-slash-menu:
-        specifier: workspace:*
+        specifier: ^0.1.5
         version: link:../prosemirror-slash-menu
       prosemirror-slash-menu-react:
-        specifier: workspace:*
+        specifier: ^0.0.8
         version: link:../prosemirror-slash-menu-react
       prosemirror-state:
         specifier: ^1.4.3
         version: 1.4.3
       prosemirror-suggestcat-plugin:
-        specifier: workspace:*
+        specifier: ^0.1.5
         version: link:../prosemirror-suggestcat-plugin
       prosemirror-view:
         specifier: ^1.31.4

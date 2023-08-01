@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev-all": "concurrently \"pnpm -r run dev --filter prosemirror-slash-menu\" \"pnpm -r run dev --filter prosemirror-slash-menu-react\" \"pnpm -r run dev --filter prosemirror-suggestcat-plugin\" \"pnpm -r run dev --filter prosemirror-suggestcat-plugin-react\"",
+    "dev-all": "concurrently \"pnpm --filter prosemirror-slash-menu dev\" \"pnpm --filter prosemirror-suggestcat-plugin dev\" \"pnpm --filter prosemirror-slash-menu-react dev\" \"pnpm --filter prosemirror-suggestcat-plugin-react dev\"",
+    "prebuild": "pnpm -r exec rm -rf dist",
+    "build": "pnpm -r run build",
+    "clean:modules": "pnpm -r exec rm -rf node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
