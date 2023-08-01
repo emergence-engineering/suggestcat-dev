@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { EditorState } from "prosemirror-state";
+import { EditorState, TextSelection } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
 import { schema } from "prosemirror-schema-basic";
 import "prosemirror-suggestcat-plugin/dist/styles/styles.css";
@@ -15,7 +15,6 @@ import { exampleSetup } from "prosemirror-example-setup";
 import {
   completePlugin,
   completePluginKey,
-  CompletePluginState,
   defaultOptions,
   grammarSuggestPlugin,
   Status,
@@ -29,10 +28,11 @@ import {
 } from "prosemirror-slash-menu";
 import { usePopper } from "react-popper";
 import {
-  promptIcons,
   promptCommands,
+  promptIcons,
   ProsemirrorSuggestcatPluginReact,
 } from "prosemirror-suggestcat-plugin-react";
+import { applyDevTools } from "prosemirror-dev-toolkit";
 
 const Root = styled.div`
   width: 100%;
@@ -83,13 +83,23 @@ export const initialDoc = {
       ],
       type: "paragraph",
     },
+    {
+      content: [
+        {
+          text: "...my heart is like an open highway - like Frankie said, 'I did it my way'.",
+          type: "text",
+        },
+      ],
+      type: "paragraph",
+    },
   ],
   type: "doc",
 };
 
 export const Editor: React.FunctionComponent = () => {
-  const [editorView, setEditorView] = useState<EditorView>();
+  // Needed for re-renders on every tr.
   const [editorState, setEditorState] = useState<EditorState>();
+  const [editorView, setEditorView] = useState<EditorView>();
   const editorRef = useRef<HTMLDivElement>(null);
   const [toolTipPopperElement, setToolTipPopperElement] =
     useState<HTMLDivElement | null>(null);
@@ -106,6 +116,7 @@ export const Editor: React.FunctionComponent = () => {
           maxSelection: 2000,
         }),
       ],
+      selection: TextSelection.create(schema.nodeFromJSON(initialDoc), 48, 123),
     });
     const view = new EditorView(document.querySelector("#editor"), {
       state,
@@ -118,20 +129,52 @@ export const Editor: React.FunctionComponent = () => {
       },
     });
     setEditorView(view);
+    setEditorState(view.state);
+    localStorage.getItem("debug") && applyDevTools(view);
+    view.focus();
     return () => {
       view.destroy();
     };
   }, [editorRef]);
 
   const slashMenuPopperRef = useMemo(() => {
-    if (!editorView || !editorState) return;
-    return editorView.domAtPos(editorState.selection.to)?.node;
-  }, [editorState]);
+    if (!editorView || !editorView?.state) {
+      return;
+    }
+
+    const currentNode = editorView.domAtPos(
+      editorView.state.selection.to
+    )?.node;
+
+    if (!currentNode) {
+      return;
+    }
+
+    if (currentNode instanceof Text) {
+      return currentNode.parentElement;
+    }
+
+    return currentNode instanceof HTMLElement ? currentNode : undefined;
+  }, [editorView?.state?.selection, window.scrollY]);
 
   const tooltipVirtualRef = useMemo(() => {
-    if (!editorView || !editorState) return;
-    return editorView.domAtPos(editorState.selection.to)?.node;
-  }, [editorState?.selection, window.scrollY]);
+    if (!editorView || !editorView?.state) {
+      return;
+    }
+
+    const currentNode = editorView.domAtPos(
+      editorView.state.selection.to
+    )?.node;
+
+    if (!currentNode) {
+      return;
+    }
+
+    if (currentNode instanceof Text) {
+      return currentNode.parentElement;
+    }
+    return currentNode instanceof HTMLElement ? currentNode : undefined;
+  }, [editorView?.state, window.scrollY]);
 
   const { styles, attributes } = usePopper(
     // @ts-ignore TODO
@@ -158,22 +201,20 @@ export const Editor: React.FunctionComponent = () => {
   );
 
   const suggestionState = useMemo(() => {
-    if (!editorState) return;
-    const state = completePluginKey.getState(editorState);
-    console.log({ state });
-    return state;
-  }, [editorState]);
+    if (!editorView?.state) return;
+    return completePluginKey.getState(editorView?.state);
+  }, [editorView?.state]);
 
   const shouldDisplay = useMemo(() => {
-    if (!editorState) return false;
-    const slashMenuOpen = SlashMenuKey.getState(editorState)?.open;
+    if (!editorView?.state) return false;
+    const slashMenuOpen = SlashMenuKey.getState(editorView?.state)?.open;
 
     return (
-      editorState?.selection.from !== editorState?.selection.to &&
+      editorView?.state?.selection.from !== editorView?.state?.selection.to &&
       !slashMenuOpen &&
       suggestionState?.status === Status.idle
     );
-  }, [editorState, suggestionState]);
+  }, [editorView?.state, suggestionState]);
 
   const handleTooltipClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -190,10 +231,10 @@ export const Editor: React.FunctionComponent = () => {
   return (
     <Root>
       <StyledEditor id="editor" ref={editorRef} />
-      {editorView && editorState && slashMenuPopperRef && (
+      {editorView && editorView?.state && slashMenuPopperRef && (
         <ProsemirrorSuggestcatPluginReact
           editorView={editorView}
-          editorState={editorState}
+          editorState={editorView?.state}
           // @ts-ignore TODO!
           domReference={slashMenuPopperRef}
         />

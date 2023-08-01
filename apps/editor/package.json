@@ -12,11 +12,11 @@
     "@types/react": "^18.2.16",
     "@types/react-dom": "^18.2.7",
     "prosemirror-example-setup": "^1.2.2",
-    "prosemirror-suggestcat-plugin": "workspace:*",
-    "prosemirror-slash-menu": "workspace:*",
-    "prosemirror-suggestcat-plugin-react": "workspace:*",
     "prosemirror-schema-basic": "^1.2.2",
+    "prosemirror-slash-menu": "workspace:*",
     "prosemirror-state": "^1.4.3",
+    "prosemirror-suggestcat-plugin": "workspace:*",
+    "prosemirror-suggestcat-plugin-react": "workspace:*",
     "prosemirror-view": "^1.31.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -48,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prosemirror-dev-toolkit": "^1.1.4"
   }
 }
