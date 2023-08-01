@@ -393,23 +393,6 @@ li.ProseMirror-selectednode:after {
     margin-bottom: 1em;
 }
 
-
-.ai-tooltip {
-    height: 2rem;
-    display: flex;
-    border: 1px solid #f5f5f5;
-    border-radius: 4px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    padding-left: 0.3rem;
-}
-
-.ai-tooltip:hover {
-    background-color: #d2efff;
-}
-
-
 .overlay-popper-element {
 }
 

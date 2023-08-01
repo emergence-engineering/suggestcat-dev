@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { EditorState, TextSelection } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
 import { schema } from "prosemirror-schema-basic";
@@ -14,22 +8,13 @@ import "prosemirror-suggestcat-plugin-react/dist/styles/styles.css";
 import { exampleSetup } from "prosemirror-example-setup";
 import {
   completePlugin,
-  completePluginKey,
   defaultOptions,
   grammarSuggestPlugin,
-  Status,
 } from "prosemirror-suggestcat-plugin";
 import styled from "@emotion/styled";
-import {
-  dispatchWithMeta,
-  SlashMenuKey,
-  SlashMenuPlugin,
-  SlashMetaTypes,
-} from "prosemirror-slash-menu";
-import { usePopper } from "react-popper";
+import { SlashMenuPlugin } from "prosemirror-slash-menu";
 import {
   promptCommands,
-  promptIcons,
   ProsemirrorSuggestcatPluginReact,
 } from "prosemirror-suggestcat-plugin-react";
 import { applyDevTools } from "prosemirror-dev-toolkit";
@@ -51,16 +36,6 @@ const StyledEditor = styled.div`
   .removalSuggestion {
     background-color: lightcoral;
   }
-`;
-
-const AiTooltip = styled.div`
-  display: flex;
-  height: 36px;
-  width: 60px;
-  align-items: center;
-  margin-left: 0.5rem;
-  transition: 0.3s;
-  font-weight: 600;
 `;
 
 export const initialDoc = {
@@ -101,8 +76,6 @@ export const Editor: React.FunctionComponent = () => {
   const [editorState, setEditorState] = useState<EditorState>();
   const [editorView, setEditorView] = useState<EditorView>();
   const editorRef = useRef<HTMLDivElement>(null);
-  const [toolTipPopperElement, setToolTipPopperElement] =
-    useState<HTMLDivElement | null>(null);
   useEffect(() => {
     const state = EditorState.create({
       doc: schema.nodeFromJSON(initialDoc),
@@ -157,77 +130,6 @@ export const Editor: React.FunctionComponent = () => {
     return currentNode instanceof HTMLElement ? currentNode : undefined;
   }, [editorView?.state?.selection, window.scrollY]);
 
-  const tooltipVirtualRef = useMemo(() => {
-    if (!editorView || !editorView?.state) {
-      return;
-    }
-
-    const currentNode = editorView.domAtPos(
-      editorView.state.selection.to
-    )?.node;
-
-    if (!currentNode) {
-      return;
-    }
-
-    if (currentNode instanceof Text) {
-      return currentNode.parentElement;
-    }
-    return currentNode instanceof HTMLElement ? currentNode : undefined;
-  }, [editorView?.state, window.scrollY]);
-
-  const { styles, attributes } = usePopper(
-    // @ts-ignore TODO
-    tooltipVirtualRef,
-    toolTipPopperElement,
-    {
-      placement: "left",
-      modifiers: [
-        { name: "flip", enabled: true },
-        {
-          name: "preventOverflow",
-          options: {
-            mainAxis: false,
-          },
-        },
-        {
-          name: "offset",
-          options: {
-            offset: [0, 20],
-          },
-        },
-      ],
-    }
-  );
-
-  const suggestionState = useMemo(() => {
-    if (!editorView?.state) return;
-    return completePluginKey.getState(editorView?.state);
-  }, [editorView?.state]);
-
-  const shouldDisplay = useMemo(() => {
-    if (!editorView?.state) return false;
-    const slashMenuOpen = SlashMenuKey.getState(editorView?.state)?.open;
-
-    return (
-      editorView?.state?.selection.from !== editorView?.state?.selection.to &&
-      !slashMenuOpen &&
-      suggestionState?.status === Status.idle
-    );
-  }, [editorView?.state, suggestionState]);
-
-  const handleTooltipClick = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      e.preventDefault();
-      if (!editorView) return;
-      dispatchWithMeta(editorView, SlashMenuKey, {
-        type: SlashMetaTypes.open,
-      });
-      return true;
-    },
-    [editorView]
-  );
-
   return (
     <Root>
       <StyledEditor id="editor" ref={editorRef} />
@@ -238,22 +140,6 @@ export const Editor: React.FunctionComponent = () => {
           // @ts-ignore TODO!
           domReference={slashMenuPopperRef}
         />
-      )}
-      {shouldDisplay && (
-        <div
-          id={"popper"}
-          // @ts-ignore
-          ref={setToolTipPopperElement}
-          className={"ai-tooltip"}
-          style={{
-            ...styles.popper,
-          }}
-          {...attributes.popper}
-          onClick={handleTooltipClick}
-        >
-          {promptIcons.StarIcon()}
-          <AiTooltip>Ask AI</AiTooltip>
-        </div>
       )}
     </Root>
   );
