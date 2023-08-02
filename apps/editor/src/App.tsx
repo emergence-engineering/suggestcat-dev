@@ -16,6 +16,7 @@ import { SlashMenuPlugin } from "prosemirror-slash-menu";
 import {
   promptCommands,
   ProsemirrorSuggestcatPluginReact,
+  slashOpeningCondition,
 } from "prosemirror-suggestcat-plugin-react";
 import { applyDevTools } from "prosemirror-dev-toolkit";
 
@@ -80,7 +81,7 @@ export const Editor: React.FunctionComponent = () => {
     const state = EditorState.create({
       doc: schema.nodeFromJSON(initialDoc),
       plugins: [
-        SlashMenuPlugin(promptCommands, undefined, undefined, true),
+        SlashMenuPlugin(promptCommands, undefined, slashOpeningCondition, true),
         ...exampleSetup({ schema }),
         grammarSuggestPlugin("-qKivjCv6MfQSmgF438PjEY7RnLfqoVe", {
           ...defaultOptions,
