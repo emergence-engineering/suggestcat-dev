@@ -385,7 +385,7 @@ importers:
         specifier: ^13.4.10
         version: 13.4.10(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
       prosemirror-slash-menu:
-        specifier: ^0.1.5
+        specifier: ^0.1.6
         version: link:../prosemirror-slash-menu
       prosemirror-slash-menu-react:
         specifier: ^0.0.8
@@ -394,7 +394,7 @@ importers:
         specifier: ^1.4.3
         version: 1.4.3
       prosemirror-suggestcat-plugin:
-        specifier: ^0.1.5
+        specifier: ^0.1.6
         version: link:../prosemirror-suggestcat-plugin
       prosemirror-view:
         specifier: ^1.31.4
