@@ -1,6 +1,6 @@
 {
   "name": "editor",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "private": true,
   "dependencies": {
     "@emotion/styled": "^11.11.0",
@@ -15,8 +15,8 @@
     "prosemirror-schema-basic": "^1.2.2",
     "prosemirror-slash-menu": "^0.1.7",
     "prosemirror-state": "^1.4.3",
-    "prosemirror-suggestcat-plugin": "^0.1.7",
-    "prosemirror-suggestcat-plugin-react": "^0.0.13",
+    "prosemirror-suggestcat-plugin": "^0.1.8",
+    "prosemirror-suggestcat-plugin-react": "^0.0.14",
     "prosemirror-view": "^1.31.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
