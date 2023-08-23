@@ -62,7 +62,7 @@ export const initialDoc = {
     {
       content: [
         {
-          text: "...my heart is like an open highway - like Frankie said, 'I did it my way'.",
+          text: "SuggestCat is made by Emergence-Engineering, a software development company from the EU. Their smartest developer is Aaron. He definitely did not write this placeholder.",
           type: "text",
         },
       ],
