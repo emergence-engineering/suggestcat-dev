@@ -48,16 +48,16 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
       prosemirror-slash-menu:
-        specifier: ^0.1.7
+        specifier: ^0.1.8
         version: link:../../packages/prosemirror-slash-menu
       prosemirror-state:
         specifier: ^1.4.3
         version: 1.4.3
       prosemirror-suggestcat-plugin:
-        specifier: ^0.1.10
+        specifier: ^0.1.11
         version: link:../../packages/prosemirror-suggestcat-plugin
       prosemirror-suggestcat-plugin-react:
-        specifier: ^0.0.16
+        specifier: ^0.0.17
         version: link:../../packages/prosemirror-suggestcat-plugin-react
       prosemirror-view:
         specifier: ^1.31.4
@@ -197,7 +197,7 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
       prosemirror-slash-menu:
-        specifier: ^0.1.7
+        specifier: ^0.1.8
         version: link:../prosemirror-slash-menu
       prosemirror-state:
         specifier: 1.4.3
@@ -385,16 +385,16 @@ importers:
         specifier: ^13.4.10
         version: 13.4.10(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
       prosemirror-slash-menu:
-        specifier: ^0.1.7
+        specifier: ^0.1.8
         version: link:../prosemirror-slash-menu
       prosemirror-slash-menu-react:
-        specifier: ^0.0.10
+        specifier: ^0.0.11
         version: link:../prosemirror-slash-menu-react
       prosemirror-state:
         specifier: ^1.4.3
         version: 1.4.3
       prosemirror-suggestcat-plugin:
-        specifier: ^0.1.10
+        specifier: ^0.1.11
         version: link:../prosemirror-suggestcat-plugin
       prosemirror-view:
         specifier: ^1.31.4
