@@ -54,10 +54,10 @@ importers:
         specifier: ^1.4.3
         version: 1.4.3
       prosemirror-suggestcat-plugin:
-        specifier: ^0.1.11
+        specifier: ^0.1.13
         version: link:../../packages/prosemirror-suggestcat-plugin
       prosemirror-suggestcat-plugin-react:
-        specifier: ^0.0.17
+        specifier: ^0.0.18
         version: link:../../packages/prosemirror-suggestcat-plugin-react
       prosemirror-view:
         specifier: ^1.31.4
@@ -287,6 +287,12 @@ importers:
 
   packages/prosemirror-suggestcat-plugin:
     dependencies:
+      '@emergence-engineering/fast-diff-merge':
+        specifier: ^0.0.3
+        version: 0.0.3
+      '@emergence-engineering/prosemirror-text-map':
+        specifier: ^0.0.3
+        version: 0.0.3
       eslint:
         specifier: ^8.29.0
         version: 8.45.0
@@ -394,7 +400,7 @@ importers:
         specifier: ^1.4.3
         version: 1.4.3
       prosemirror-suggestcat-plugin:
-        specifier: ^0.1.11
+        specifier: ^0.1.13
         version: link:../prosemirror-suggestcat-plugin
       prosemirror-view:
         specifier: ^1.31.4
@@ -2193,6 +2199,20 @@ packages:
     dependencies:
       stackframe: 1.3.4
     dev: true
+
+  /@emergence-engineering/fast-diff-merge@0.0.3:
+    resolution: {integrity: sha512-vx7hGnEsPSAPpDlcfyE7MROLUYEHl3CMJc7HVusVmyKRYbF7TXLiKIKA9IWxUj1LgbjYqtqN0vTWeTw/c8P2jg==}
+    engines: {node: '>=12'}
+    dependencies:
+      fast-diff: 1.3.0
+    dev: false
+
+  /@emergence-engineering/prosemirror-text-map@0.0.3:
+    resolution: {integrity: sha512-+ntQ50YDacytxljxcbdYtYpWw1HTfZAPOSVuyGzexnhqQEBdNG12jWK68x0FxAGZ3ExsjRDlAiPZvl6zLWrorA==}
+    engines: {node: '>=12'}
+    dependencies:
+      prosemirror-model: 1.19.3
+    dev: false
 
   /@emotion/babel-plugin@11.11.0:
     resolution: {integrity: sha512-m4HEDZleaaCH+XgDDsPF15Ht6wTLsgDTeR3WYj9Q/k76JtWhrJjcP4+/XlG8LGT/Rol9qUfOIztXeA84ATpqPQ==}

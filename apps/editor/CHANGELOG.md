@@ -1,5 +1,13 @@
 # editor
 
+## 0.1.15
+
+### Patch Changes
+
+- Updated dependencies
+  - prosemirror-suggestcat-plugin@0.1.13
+  - prosemirror-suggestcat-plugin-react@0.0.18
+
 ## 0.1.14
 
 ### Patch Changes
