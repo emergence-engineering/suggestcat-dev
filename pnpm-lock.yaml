@@ -54,10 +54,10 @@ importers:
         specifier: ^1.4.3
         version: 1.4.3
       prosemirror-suggestcat-plugin:
-        specifier: ^0.1.13
+        specifier: ^0.1.14
         version: link:../../packages/prosemirror-suggestcat-plugin
       prosemirror-suggestcat-plugin-react:
-        specifier: ^0.0.18
+        specifier: ^0.0.19
         version: link:../../packages/prosemirror-suggestcat-plugin-react
       prosemirror-view:
         specifier: ^1.31.4
@@ -400,7 +400,7 @@ importers:
         specifier: ^1.4.3
         version: 1.4.3
       prosemirror-suggestcat-plugin:
-        specifier: ^0.1.13
+        specifier: ^0.1.14
         version: link:../prosemirror-suggestcat-plugin
       prosemirror-view:
         specifier: ^1.31.4
