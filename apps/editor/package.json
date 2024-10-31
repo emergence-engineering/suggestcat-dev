@@ -1,6 +1,6 @@
 {
   "name": "editor",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "private": true,
   "dependencies": {
     "@emotion/styled": "^11.11.0",
@@ -13,10 +13,10 @@
     "@types/react-dom": "^18.2.7",
     "prosemirror-example-setup": "^1.2.2",
     "prosemirror-schema-basic": "^1.2.2",
-    "prosemirror-slash-menu": "^0.1.8",
+    "prosemirror-slash-menu": "workspace:*",
     "prosemirror-state": "^1.4.3",
-    "prosemirror-suggestcat-plugin": "^1.0.0",
-    "prosemirror-suggestcat-plugin-react": "^0.0.21",
+    "prosemirror-suggestcat-plugin": "workspace:*",
+    "prosemirror-suggestcat-plugin-react": "workspace:*",
     "prosemirror-view": "^1.31.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
