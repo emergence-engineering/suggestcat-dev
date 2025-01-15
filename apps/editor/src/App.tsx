@@ -81,7 +81,7 @@ export const Editor: React.FunctionComponent = () => {
     const state = EditorState.create({
       doc: schema.nodeFromJSON(initialDoc),
       plugins: [
-        SlashMenuPlugin(promptCommands, undefined, slashOpeningCondition, true),
+        SlashMenuPlugin(promptCommands, undefined, undefined, false, true),
         ...exampleSetup({ schema }),
         grammarSuggestPlugin("-qKivjCv6MfQSmgF438PjEY7RnLfqoVe", {
           ...defaultOptions,
@@ -116,9 +116,8 @@ export const Editor: React.FunctionComponent = () => {
       return;
     }
 
-    const currentNode = editorView.domAtPos(
-      editorView.state.selection.to
-    )?.node;
+    const currentNode = editorView.domAtPos(editorView.state.selection.to)
+      ?.node;
 
     if (!currentNode) {
       return;

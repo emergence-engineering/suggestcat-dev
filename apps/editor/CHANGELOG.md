@@ -1,5 +1,35 @@
 # editor
 
+## 0.1.26
+
+### Patch Changes
+
+- Updated dependencies
+  - prosemirror-slash-menu@0.4.4
+  - prosemirror-suggestcat-plugin-react@0.2.5
+
+## 0.1.25
+
+### Patch Changes
+
+- Updated dependencies
+  - prosemirror-slash-menu@0.4.3
+  - prosemirror-suggestcat-plugin-react@0.2.4
+
+## 0.1.24
+
+### Patch Changes
+
+- Updated dependencies
+  - prosemirror-slash-menu@0.4.2
+  - prosemirror-suggestcat-plugin-react@0.2.3
+
+## 0.1.23
+
+### Patch Changes
+
+- prosemirror-suggestcat-plugin-react@0.2.2
+
 ## 0.1.22
 
 ### Patch Changes
