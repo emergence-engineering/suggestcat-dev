@@ -84,6 +84,12 @@ pnpm --filter editor run start # in another terminal starts the CRA project insi
 **For more information about `pnpm` read the [workspaces docs](https://pnpm.io/workspaces)** :books:
 
 ### publishing submodules to npm registry :package:
+lint all packages
+```sh
+pnpm run lint # or format to autofix them
+```
+Remember to update the readmes! And commit the submodules.
+
 generate a new changeset
 ```sh
 # in the root of the repository
@@ -93,16 +99,21 @@ pnpm changeset # select workspaces that need a new version
 ```sh
 pnpm changeset version # in the root of the repository
 ```
+here you can manually edit the versions if you want to
 ```sh
 pnpm install # in the root of the repository
 ```
 ```sh
 pnpm publish # in the workspace root you want to publish from
 ```
-add git tags
+commit changes in the repositories and add git tags
 ```sh
+git add -A
+git commit -m ""
 git tag v0.1.5 --annotate -m "message" # change v0.1.5 with the current version
 git push --tags # push tags to github
+npm login
+pnpm publish
 ```
 
 at this point you have some changes in the monorepo, commit and push

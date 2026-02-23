@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { EditorState, TextSelection } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
 import { schema } from "prosemirror-schema-basic";
@@ -30,6 +30,7 @@ import { SlashMenuPlugin } from "prosemirror-slash-menu";
 import {
   promptCommands,
   ProsemirrorSuggestcatPluginReact,
+  GrammarPopup,
 } from "prosemirror-suggestcat-plugin-react";
 import { applyDevTools } from "prosemirror-dev-toolkit";
 import { EditorProvider, ExampleType, ExampleConfig } from "./context/EditorContext";
@@ -93,6 +94,9 @@ export const initialDoc = {
   type: "doc",
 };
 
+const apiKey = "-qKivjCv6MfQSmgF438PjEY7RnLfqoVe";
+const mainModel = "cerebras:gpt-oss-120b";
+
 export const Editor: React.FunctionComponent = () => {
   // Needed for re-renders on every tr.
   const [editorState, setEditorState] = useState<EditorState>();
@@ -115,10 +119,18 @@ export const Editor: React.FunctionComponent = () => {
         createWordComplexityPlugin({ moderateThreshold: 3, highThreshold: 4 }),
         createSentenceLengthPlugin({ warningThreshold: 25, errorThreshold: 40 }),
         createRandomProcessorPlugin({ minDelay: 500, maxDelay: 3000, errorRate: 0.3 }),
-        grammarSuggestPluginV2("-qKivjCv6MfQSmgF438PjEY7RnLfqoVe", { batchSize: 2, model: "cerebras:llama-3.3-70b" }),
-        completePluginV2("-qKivjCv6MfQSmgF438PjEY7RnLfqoVe", { model: "cerebras:llama-3.3-70b" }),
-        autoCompletePlugin("-qKivjCv6MfQSmgF438PjEY7RnLfqoVe", {
-          model: "cerebras:llama-3.3-70b",
+        grammarSuggestPluginV2(apiKey, {
+          batchSize: 2,
+          model: mainModel,
+          createPopup: "react",
+          fallback: {
+            fallbackModel: "openai:gpt-4o-mini",
+            failureThreshold: 3,
+          },
+        }),
+        completePluginV2(apiKey, { model: mainModel }),
+        autoCompletePlugin(apiKey, {
+          model: mainModel,
           debounceMs: 2000,
         })
       ],
@@ -149,25 +161,6 @@ export const Editor: React.FunctionComponent = () => {
     };
   }, [editorRef]);
 
-  const slashMenuPopperRef = useMemo(() => {
-    if (!editorView || !editorView?.state) {
-      return;
-    }
-
-    const currentNode = editorView.domAtPos(editorView.state.selection.to)
-      ?.node;
-
-    if (!currentNode) {
-      return;
-    }
-
-    if (currentNode instanceof Text) {
-      return currentNode.parentElement;
-    }
-
-    return currentNode instanceof HTMLElement ? currentNode : undefined;
-  }, [editorView, editorView?.state?.selection, window.scrollY]);
-
   return (
     <EditorProvider
       editorView={editorView}
@@ -188,13 +181,19 @@ export const Editor: React.FunctionComponent = () => {
           <AutoCompleteToggle />
         </Controls>
         <StyledEditor id="editor" ref={editorRef} />
-        {editorView && editorView?.state && slashMenuPopperRef && (
-          <ProsemirrorSuggestcatPluginReact
-            editorView={editorView}
-            editorState={editorView?.state}
-            // @ts-ignore TODO!
-            domReference={slashMenuPopperRef}
-          />
+        {editorView && editorView?.state && (
+          <>
+            <ProsemirrorSuggestcatPluginReact
+              editorView={editorView}
+              editorState={editorView?.state}
+            />
+            <GrammarPopup
+              editorView={editorView}
+              editorState={editorView?.state}
+              apiKey={apiKey}
+              model={mainModel}
+            />
+          </>
         )}
       </Root>
     </EditorProvider>
