@@ -1,5 +1,10 @@
 # suggestcat-dev :pencil2:
 
+# Archive
+
+This repository got archived as the packages inside got migrated to a new monorepo:
+https://github.com/emergence-engineering/emergence-tools
+
 ## pnpm workspace
 
 ### :warning: WARNING:exclamation::skull: 
